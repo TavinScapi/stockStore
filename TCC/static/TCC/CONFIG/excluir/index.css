@@ -1,0 +1,75 @@
+/* Reset de margens e padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos gerais */
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f7f9fc;
+    color: #333;
+    padding: 20px;
+}
+
+/* Título */
+h1 {
+    font-size: 2rem;
+    color: #E30613;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Texto de confirmação */
+p {
+    font-size: 1rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Formulário container */
+form {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Botões */
+form button[type="submit"],
+form a {
+    padding: 10px 20px;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+}
+
+/* Botão de confirmação (Sim, excluir) */
+form button[type="submit"] {
+    background-color: #E30613;
+    border: none;
+    font-weight: bold;
+}
+
+form button[type="submit"]:hover {
+    background-color: #c20510;
+}
+
+/* Botão de cancelar */
+form a {
+    background-color: #555;
+}
+
+form a:hover {
+    background-color: #444;
+}

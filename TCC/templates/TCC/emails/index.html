@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            padding: 10px 0;
+            border-bottom: 2px solid #ffc107;
+        }
+        .header h1 {
+            color: #e63946;
+            font-size: 24px;
+        }
+        .content {
+            padding: 20px 0;
+        }
+        .content p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+        .alerta {
+            color: #ff8800;
+            font-weight: bold;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #6c757d;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 20px 0;
+            color: #ffffff;
+            background-color: #E30613;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .btn:hover {
+            background-color: #761e24;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚠️ Estoque Baixo: Ação Necessária</h1>
+        </div>
+        <div class="content">
+            <p>Prezado responsável,</p>
+            <p>O produto <strong>{{ produto.nome }}</strong> atingiu um nível crítico de estoque.</p>
+            <p><strong>Quantidade atual:</strong> <span class="alerta">{{ produto.quantidade }}</span></p>
+            <p><strong>Estoque mínimo esperado:</strong> {{ produto.estoque_minimo }}</p>
+            <p>Recomendamos verificar o estoque e providenciar a reposição o mais rápido possível para evitar interrupções.</p>
+            <a href="http://127.0.0.1:8000/lista_produtos/" class="btn">Verificar Estoque</a>
+        </div>
+        <div class="footer">
+            <p>Este é um e-mail automático. Por favor, não responda.</p>
+            <p>&copy; 2024 Estoque StockStore</p>
+        </div>
+    </div>
+</body>
+</html>

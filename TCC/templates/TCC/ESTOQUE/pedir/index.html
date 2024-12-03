@@ -1,0 +1,29 @@
+        {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>STOCK.STORE</title>
+            <link rel="icon" type="image/png" href="{% static 'TCC/images/INCON-LOGO.png' %}" sizes="32x32">
+
+</head>
+<body>
+<h1>Pedir Produto</h1>
+<form method="POST" action="{% url 'pedir_produto' %}">
+    {% csrf_token %}
+    <label for="produto_id">Produto:</label>
+    <select name="produto_id" required>
+        {% for produto in produtos %}
+            <option value="{{ produto.id }}">{{ produto.nome }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="quantidade">Quantidade:</label>
+    <input type="number" name="quantidade" min="1" required>
+
+    <button type="submit">Solicitar</button>
+</form>
+<a href="{% url 'lista_produtos' %}">Voltar à lista de produtos</a>
+
+</body>
+</html>

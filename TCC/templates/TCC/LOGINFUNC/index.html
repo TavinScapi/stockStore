@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>STOCK.STORE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+        <link rel="icon" type="image/png" href="{% static 'TCC/images/INCON-LOGO.png' %}" sizes="32x32">
+
+    <link rel="stylesheet" href="{% static 'TCC/LOGIN/index.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="form-image">
+            <img src="{% static 'TCC/images/Checking boxes-bro.png' %}" alt="Logo">
+        </div>
+        <div class="form-content">
+            <h1>Login de Funcionário</h1>
+            <p>Digite os seus dados de acesso no campo abaixo.</p>
+            <br>
+            <form method="post">
+                {% csrf_token %}
+                <div class="input-group">
+                    <div class="input-box">
+                        <label for="username">Usuário</label>
+                        <input type="text" id="username" name="username" placeholder="Digite seu Usuário" autofocus="true" required>
+                    </div>
+                    <br>
+                    <div class="input-box">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" name="password" placeholder="Digite sua Senha" autofocus="true" required>
+                    </div>
+                </div>
+            <br>
+
+                <div class="continue-button">
+                    <button type="submit">Entrar</button>
+                    <button class="oi" type="button" onclick="goBack()" aria-label="Voltar">Voltar</button>
+                </div>
+            </form>
+            <a href="{% url 'cadastro_funcionario' %}" class="register-link">Não tem uma conta? Cadastre-se aqui.</a>
+        </div>
+    </div>
+<script>
+            function goBack() {
+            window.history.back();
+        }
+</script>
+</body>
+</html>

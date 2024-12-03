@@ -1,0 +1,43 @@
+<!-- templates/TCC/FORN/editar.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STOCK.STORE</title>
+        <link rel="icon" type="image/png" href="{% static 'TCC/images/INCON-LOGO.png' %}" sizes="32x32">
+
+    <link rel="stylesheet" href="{% static 'TCC/' %}"> <!-- Link para o CSS, ajuste conforme necessário -->
+</head>
+<body>
+    <div class="container">
+        <h1>Editar Fornecedor</h1>
+
+        <!-- Exibir mensagens de erro, se houver -->
+        {% if form.errors %}
+            <div class="error-messages">
+                <p>Por favor, corrija os erros abaixo:</p>
+                <ul>
+                    {% for field, errors in form.errors.items %}
+                        <li>{{ field }}: {{ errors }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+
+            <!-- Exibir o formulário de edição -->
+            <div class="form-group">
+                {{ form.as_p }}  <!-- Renderiza o formulário com cada campo em um parágrafo -->
+            </div>
+
+            <button type="submit" class="btn-submit">Salvar Alterações</button>
+            <a href="{% url 'nome_da_url_para_lista_fornecedores' %}" class="btn-back">Cancelar</a>
+            <!-- Troque 'nome_da_url_para_lista_fornecedores' pelo nome da URL da lista de fornecedores -->
+        </form>
+    </div>
+</body>
+</html>

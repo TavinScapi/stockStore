@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STOCK.STORE</title>
+        <link rel="icon" type="image/png" href="{% static 'TCC/images/INCON-LOGO.png' %}" sizes="32x32">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'TCC/PERFIL/index.css' %}"> <!-- Ajuste o caminho do CSS -->
+</head>
+<body>
+    <div class="container">
+        <h1>Perfil do Administrador</h1>
+        <div class="perfil-info">
+            <div class="foto-perfil">
+                <img src="{% static 'TCC/images/logoBOM.png' %}" alt="Foto de perfil do Administrador" class="foto-perfil-img"> <!-- Imagem padrão do administrador -->
+            </div>
+            <p><strong>Nome:</strong> Administrador</p> <!-- Nome padrão -->
+            <p><strong>Email:</strong> stock.store@gmail.com</p> <!-- Email padrão -->
+        </div>
+        <div class="botoes">
+            <a href="{% url 'home' %}" class="botao">Voltar para a Home</a>
+            <a href="{% url 'logout' %}" class="botao">Sair</a>
+        </div>
+    </div>
+</body>
+</html>

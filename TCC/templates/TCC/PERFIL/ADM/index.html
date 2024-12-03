@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STOCK.STORE</title>
+        {% load static %}
+    <link rel="icon" type="image/png" href="{% static 'TCC/images/INCON-LOGO.png' %}" sizes="32x32">
+
+    <link rel="stylesheet" href="{% static 'css/perfil.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="profile-header">
+            <img src="{% static 'img/logo.png' %}" alt="Logo Sistema" class="profile-logo">
+            <h1>Perfil do Administrador</h1>
+        </div>
+
+        <div class="profile-info">
+            <div class="profile-pic-container">
+                <img src="{% static 'img/default_profile.png' %}" alt="Foto de Perfil" class="profile-pic" id="profilePic">
+                <i class="fas fa-camera profile-pic-edit" onclick="document.getElementById('fileInput').click();"></i>
+                <input type="file" id="fileInput" accept="image/*" style="display: none;" onchange="changeProfilePic(event)">
+            </div>
+            <div class="info-details">
+                <h2>Nome: {{ name }}</h2>
+                <p>Email: {{ email }}</p>
+                <p id="lastLogout">Último Login: <span id="lastLogoutDate">{{ last_logout_date }}</span></p>
+            </div>
+        </div>
+
+        <div class="actions">
+    <a href="{% url 'index' %}" class="btn logout">
+        <i class="fas fa-sign-out-alt"></i> Logout
+    </a>
+            <button class="btn back" onclick="goBack()"><i class="fas fa-arrow-left"></i> Voltar</button>
+        </div>
+    </div>
+
+    <script>
+        function changeProfilePic(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('profilePic').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+
+</html>

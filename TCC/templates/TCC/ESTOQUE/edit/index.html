@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>STOCK.STORE</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'TCC/ESTOQUE/add/index.css' %}">
+            <link rel="icon" type="image/png" href="{% static 'TCC/images/INCON-LOGO.png' %}" sizes="32x32">
+
+</head>
+<body>
+    <h1>EDITAR Produto</h1>
+
+    <!-- Formulário de adição de produto -->
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.nome.label_tag }}
+            {{ form.nome }}
+        </div>
+        <div class="form-group">
+            {{ form.categoria.label_tag }}
+            {{ form.categoria }}
+        </div>
+        <div class="form-group">
+            {{ form.preco.label_tag }}
+            {{ form.preco }}
+        </div>
+        <div class="form-group">
+            {{ form.quantidade.label_tag }}
+            {{ form.quantidade }}
+        </div>
+        <div class="form-group-full">
+            {{ form.descricao.label_tag }}
+            {{ form.descricao }}
+        </div>
+        <div class="form-group">
+            {{ form.fornecedor.label_tag }}
+            {{ form.fornecedor }}
+        </div>
+        <div class="form-group">
+            {{ form.estoque_minimo.label_tag }}
+            {{ form.estoque_minimo }}
+        </div>
+        <div class="form-group">
+            {{ form.estoque_maximo.label_tag }}
+            {{ form.estoque_maximo }}
+        </div>
+        <div class="form-submit">
+            <button type="submit">Salvar</button>
+            <br>
+            <br>
+            <button onclick="window.history.back()">Voltar</button>
+
+        </div>
+    </form>
+</body>
+</html>

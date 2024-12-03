@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    {% load static %}
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}STOCK.STORE{% endblock %}</title>
+    <meta name="description" content="Gerencie seu almoxarifado de forma eficiente com o nosso sistema de estoque.">
+    <meta name="keywords" content="estoque, almoxarifado, controle, inventário, gestão de estoque, produtos">
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'TCC/CONFIG/index.css' %}">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+        <link rel="icon" type="image/png" href="{% static 'TCC/images/INCON-LOGO.png' %}" sizes="32x32">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<style>
+    /* Centralizar o container principal */
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        margin-bottom: 20px;
+        padding: 10px;
+    }
+
+    /* Centralizar a barra de pesquisa, h1 e botão de busca */
+    .search-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+    .search-container input {
+        padding: 12px;
+        width: 250px;
+        border: 1px solid #ddd;
+        border-radius: 25px;
+        font-size: 1rem;
+        outline: none;
+        transition: border-color 0.3s ease;
+    }
+
+    .search-container input:focus {
+        border-color: #E30613;
+    }
+
+    .search-container button {
+        padding: 12px 20px;
+        border: none;
+        background-color: #E30613;
+        color: white;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 1rem;
+        margin-left: 10px;
+        transition: background-color 0.3s ease;
+    }
+
+    .search-container button:hover {
+        background-color: #c0392b;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    /* Card de perfil */
+    .card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        width: 250px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Hover effect for card */
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Ajustes na imagem de perfil */
+    .foto-container {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .foto-perfil-img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #E30613;
+    }
+
+    /* Estilo do nome */
+    h2 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    /* Estilo dos parágrafos */
+    p {
+        font-size: 0.9rem;
+        color: #555;
+        margin: 5px 0;
+    }
+
+    /* Botões de Edição e Exclusão */
+    .card a {
+        text-decoration: none;
+        font-size: 1rem;
+        color: #3498db;
+        margin-top: 10px;
+        display: inline-block;
+        transition: color 0.3s ease;
+    }
+
+    .card a:hover {
+        color: #2980b9;
+    }
+
+    /* Botão de excluir */
+    .card .delete-link {
+        color: red;
+        font-weight: bold;
+        margin-top: 5px;
+        display: inline-block;
+    }
+
+    .card .delete-link:hover {
+        color: #c0392b;
+    }
+</style>
+
+
+</head>
+<body>
+    <nav>
+        <div class="wrapper">
+            <div class="logo">
+            <a href="{% url 'home' %}">
+                <img src="{% static 'TCC/images/unnamed (1).png' %}" alt="Logo Sistema de Estoque">
+            </a>
+            </div>
+            <input type="radio" name="slider" id="menu-btn">
+            <input type="radio" name="slider" id="close-btn">
+            <ul class="nav-links">
+                <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+
+                <!-- Links de Estoque -->
+                <li class="menu-item">
+                    <a href="#" class="desktop-item">ESTOQUE</a>
+                    <input type="checkbox" id="showDrop1">
+                    <label for="showDrop1" class="mobile-item">ESTOQUE</label>
+                    <ul class="drop-menu estoque-links"></ul>
+                </li>
+
+                <!-- Links de Relatórios -->
+                <li class="menu-item">
+                    <a href="#" class="desktop-item">RELATORIOS</a>
+                    <input type="checkbox" id="showDrop2">
+                    <label for="showDrop2" class="mobile-item">RELATORIOS</label>
+                    <ul class="drop-menu relatorios-links"></ul>
+                </li>
+
+                <!-- Links de Configurações -->
+                <li class="menu-item">
+                    <a href="#" class="desktop-item">CONFIGURACOES</a>
+                    <input type="checkbox" id="showDrop3">
+                    <label for="showDrop3" class="mobile-item">CONFIGURACOES</label>
+                    <ul class="drop-menu configuracoes-links"></ul>
+                </li>
+            </ul>
+            <div class="header-icons">
+                <a href="#" class="profile-icon" id="profileLink" aria-label="Profile">
+                    <i class="bx bx-user"></i>
+                </a>
+            </div>
+            <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+        </div>
+    </nav>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <h1>Funcionários</h1>
+    <div class="search-container">
+        <form method="get" action="">
+            <input type="text" name="q" placeholder="Pesquisar por nome" value="{{ query }}">
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
+<!-- No seu template de listagem, talvez func_list.html -->
+<div class="card-container">
+    {% for funcionario in funcionarios %}
+    <div class="card">
+        <div class="foto-container">
+            {% if funcionario.photo %}
+                <img src="{{ funcionario.photo.url }}" alt="Foto de {{ funcionario.username }}" class="foto-perfil-img">
+            {% else %}
+                <img src="{% static 'images/default_profile.png' %}" alt="SEM FOTO DE PERFIL    " class="foto-perfil-img">
+            {% endif %}
+        </div>
+        <h2>{{ funcionario.firstname }} {{ funcionario.lastname }}</h2>
+        <p><strong>Email:</strong> {{ funcionario.email }}</p>
+        <p><strong>Telefone:</strong> {{ funcionario.phone }}</p>
+        <p><strong>Usuário:</strong> {{ funcionario.username }}</p>
+<br>
+        <!-- Botões de Edição e Exclusão -->
+        <a href="{% url 'editar_funcionario' funcionario.pk %}">Editar</a>
+        <a href="{% url 'excluir_funcionario' funcionario.pk %}" style="color: red;">Excluir</a>
+
+    </div>
+    {% empty %}
+        <br>
+    <p>Nenhum funcionário encontrado.</p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    {% endfor %}
+</div>
+
+    <footer>
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-section">
+                    <img src="{% static 'images/unnamed.png' %}" alt="Logo Sistema de Estoque" class="footer-logo">
+                </div>
+                <div class="footer-section">
+                    <h4>Conecte-se Conosco</h4>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/store._stock/"><i class='bx bxl-instagram'></i></a>
+                        <a href="https://github.com/TavinScapi/STOCK.STORE.git"><i class='bx bxl-github'></i></a>
+                        <a href="https://www.facebook.com/?locale=pt_BR"><i class='bx bxl-facebook'></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 STOCK.STORE | Todos os direitos reservados. Gerencie com eficiência!</p>
+        </div>
+    </footer>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        // Inicializar EmailJS
+        (function () {
+            emailjs.init("mtVLFz5y_caSMv_Z6");  // Seu User ID do EmailJS
+        })();
+
+        document.getElementById('emailForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            emailjs.sendForm('service_8rj88ii', 'template_1v46c2l', this)
+                .then(function () {
+                    alert('Email enviado com sucesso!');
+                    document.getElementById('emailForm').reset(); // Limpa os campos do formulário após o envio
+                }, function (error) {
+                    alert('Erro ao enviar email: ' + JSON.stringify(error));
+                });
+        });
+
+        // Abrir e fechar modal
+        const contactIcon = document.getElementById('contactIcon');
+        const contactModal = document.getElementById('contactModal');
+        const closeModal = document.getElementById('closeModal');
+
+        contactIcon.addEventListener('click', function () {
+            contactModal.style.display = 'flex';  // Exibe o modal
+        });
+
+        closeModal.addEventListener('click', function () {
+            contactModal.style.display = 'none';  // Fecha o modal
+        });
+
+        // Fecha o modal se clicar fora da caixa de conteúdo
+        window.addEventListener('click', function (event) {
+            if (event.target == contactModal) {
+                contactModal.style.display = 'none';
+            }
+        });
+    </script>
+
+    <script>
+        // Definindo os caminhos com base no tipo de usuário
+        const userRole = localStorage.getItem('userRole'); // 'admin' ou 'funcionario'
+
+        const profileLink = document.getElementById('profileLink');
+        const estoqueLinks = document.querySelector('.estoque-links');
+        const relatoriosLinks = document.querySelector('.relatorios-links');
+        const configuracoesLinks = document.querySelector('.configuracoes-links');
+
+        if (userRole === 'admin') {
+        // Caminhos para administradores
+        estoqueLinks.innerHTML = `
+            <li><a href="{% url 'lista_produtos' %}"><i class="fas fa-th"></i> Produtos</a></li>
+            <li><a href="{% url 'forn' %}"><i class="fas fa-truck"></i> Fornecedores</a></li>
+            <li><a href="{% url 'adicionar_produto' %}"><i class="fas fa-arrow-right"></i> Entradas</a></li>
+            <li><a href="{% url 'remover_produto' %}"><i class="fas fa-arrow-left"></i> Saídas</a></li>
+        `;
+
+        relatoriosLinks.innerHTML = `
+            <li><a href="{% url 'relatorio' %}"><i class="fas fa-clipboard-list"></i> Relatórios</a></li>
+            <li><a href="{% url 'forn' %}"><i class="fas fa-file-alt"></i> Fornecedores</a></li>
+        `;
+
+        configuracoesLinks.innerHTML = `
+            <li><a href="{% url 'USER' %}"><i class="fas fa-users"></i> Usuários</a></li>
+        `;
+
+
+        } else if (userRole === 'funcionario') {
+            // Caminhos para funcionários
+            estoqueLinks.innerHTML = `
+                <li><a href="/ESTOQUE/estoque.html"><i class="fas fa-th"></i> Produtos</a></li>
+            `;
+
+            relatoriosLinks.innerHTML = `
+                <li><a href="/RELATORIOS/relatorio.html"><i class="fas fa-clipboard-list"></i> Relatorios</a></li>
+            `;
+
+            configuracoesLinks.innerHTML = `
+                <li><a href="/CONFIGURACOES/usuarios.html"><i class="fas fa-users"></i> Usuários</a></li>
+            `;
+        }
+
+        if (userRole === 'admin') {
+            profileLink.href ={% url "perfilADM" %}; // Caminho para o perfil do admin
+        } else if (userRole === 'funcionario') {
+            profileLink.href = "/PERFIL/perfilFUNC.html"; // Caminho para o perfil do funcionário
+        }
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuToggle.addEventListener('click', function () {
+            navLinks.classList.toggle('active');
+        });
+
+        const dropdownLinks = document.querySelectorAll('.dropdown-content li');
+
+        dropdownLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                navLinks.classList.remove('active');
+            });
+        });
+
+
+
+        const buttonContainer = document.getElementById('user-buttons');
+
+        if (userRole === 'admin') {
+            buttonContainer.innerHTML = `
+        <div class="button-group">
+            <button class="function-button" onclick="window.location.href='/ESTOQUE/estoque.html'">
+                <i class="fas fa-th"></i> Estoque
+            </button>
+            <button class="function-button" onclick="window.location.href='/FORNECEDORES/fornecedores.html'">
+                <i class="fas fa-truck"></i> Fornecedores
+            </button>
+            <button class="function-button" onclick="window.location.href='/ESTOQUE/entrada.html'">
+                <i class="fas fa-arrow-right"></i> Entradas
+            </button>
+            <button class="function-button" onclick="window.location.href='/ESTOQUE/saida.html'">
+                <i class="fas fa-arrow-left"></i> Saídas
+            </button>
+        </div>
+    `;
+            document.getElementById('adminContent').style.display = 'block';
+        } else if (userRole === 'funcionario') {
+            buttonContainer.innerHTML = `
+        <div class="button-group">
+            <button class="function-button" onclick="window.location.href='/ESTOQUE/estoque.html'">
+                <i class="fas fa-th"></i> Estoque
+            </button>
+            <button class="function-button" onclick="window.location.href='/RELATORIOS/relatorio.html'">
+                <i class="fas fa-clipboard-list"></i> Relatório de Inventário
+            </button>
+            <button class="function-button" onclick="window.location.href='/CONFIGURACOES/usuarios.html'">
+                <i class="fas fa-user-cog"></i> Gerenciar Perfil
+            </button>
+        </div>
+    `;
+            document.getElementById('funcContent').style.display = 'block';
+        }
+
+    </script>
+</body>
+</html>

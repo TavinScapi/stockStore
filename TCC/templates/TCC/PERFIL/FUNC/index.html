@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STOCK.STORE</title>
+    {% load static %}
+        <link rel="icon" type="image/png" href="{% static 'TCC/images/INCON-LOGO.png' %}" sizes="32x32">
+
+    <link rel="stylesheet" href="{% static 'TCC/PERFIL/index.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Perfil do Funcionário</h1>
+        <div class="perfil-info">
+            <div class="foto-perfil">
+                {% if funcionario.photo %}
+                    <img src="{{ funcionario.photo.url }}" alt="Foto de {{ funcionario.username }}" class="foto-perfil-img">
+                {% else %}
+                    <img src="{% static 'img/default_profile.png' %}" alt="Foto de perfil padrão" class="foto-perfil-img">
+                {% endif %}
+            </div>
+            <div class="info-text">
+                <p><strong>Nome de Usuário:</strong> {{ funcionario.username }}</p>
+                <p><strong>Email:</strong> {{ funcionario.email }}</p>
+                <p><strong>Último Login:</strong> {{ funcionario.last_login }}</p>
+            </div>
+        </div>
+        <div class="botoes">
+            <a href="{% url 'editar_perfil_funcionario' %}" class="botao">Editar Perfil</a>
+            <a href="{% url 'homefunc' %}" class="botao">Voltar para a Home</a>
+            <a href="{% url 'logout' %}" class="botao">Sair</a>
+        </div>
+    </div>
+</body>
+</html>
+
+

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+            {% load static %}
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STOCK.STORE</title>
+        <link rel="icon" type="image/png" href="{% static 'TCC/images/INCON-LOGO.png' %}" sizes="32x32">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 400px;
+            margin: 50px auto;
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin: 15px 0 5px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #E30613;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #761e24;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Reposição de Estoque</h1>
+        <p>Produto: {{ produto.nome }}</p>
+        <p>Quantidade Atual: {{ produto.quantidade }}</p>
+
+        <form method="post">
+            {% csrf_token %}
+            <label for="quantidade">Adicionar quantidade:</label>
+            <input type="number" name="quantidade" id="quantidade" min="1" required>
+            <button type="submit">Confirmar Reposição</button>
+            <br>
+            <br>
+            <button onclick="window.history.back()">Voltar</button>
+
+        </form>
+    </div>
+</body>
+</html>

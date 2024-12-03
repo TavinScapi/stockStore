@@ -1,0 +1,90 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e9ecef;
+    color: #333;
+}
+
+.container {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-left: 8px solid #E30613; /* Barra lateral para destaque */
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #E30613;
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.perfil-info {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.foto-perfil {
+    margin-bottom: 15px;
+}
+
+.foto-perfil-img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #E30613;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.info-text p {
+    font-size: 1.1rem;
+    margin: 8px 0;
+    color: #555;
+}
+
+.info-text p strong {
+    color: #E30613;
+}
+
+.botoes {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.botao {
+    display: inline-block;
+    padding: 10px 25px;
+    background-color: #E30613;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.botao:hover {
+    background-color: #C30511;
+    transform: translateY(-2px); /* Efeito de "flutuar" ao passar o mouse */
+}
+
+.botao:active {
+    transform: translateY(0); /* Reversão do efeito ao clicar */
+}

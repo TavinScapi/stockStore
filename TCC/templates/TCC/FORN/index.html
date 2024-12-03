@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'TCC/FORN/index.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOCK.STORE</title>
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="icon" type="image/png" href="{% static 'TCC/images/INCON-LOGO.png' %}" sizes="32x32">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="wrapper">
+            <div class="logo">
+            <a href="{% url 'home' %}">
+                <img src="{% static 'TCC/images/unnamed (1).png' %}" alt="Logo Sistema de Estoque">
+            </a>
+            </div>
+            <input type="radio" name="slider" id="menu-btn">
+            <input type="radio" name="slider" id="close-btn">
+            <ul class="nav-links">
+                <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+
+                <!-- Links de Estoque -->
+                <li class="menu-item">
+                    <a href="#" class="desktop-item">ESTOQUE</a>
+                    <input type="checkbox" id="showDrop1">
+                    <label for="showDrop1" class="mobile-item">ESTOQUE</label>
+                    <ul class="drop-menu estoque-links"></ul>
+                </li>
+
+                <!-- Links de Relatórios -->
+                <li class="menu-item">
+                    <a href="#" class="desktop-item">RELATÓRIOS</a>
+                    <input type="checkbox" id="showDrop2">
+                    <label for="showDrop2" class="mobile-item">RELATÓRIOS</label>
+                    <ul class="drop-menu relatorios-links"></ul>
+                </li>
+
+                <!-- Links de Configurações -->
+                <li class="menu-item">
+                    <a href="#" class="desktop-item">CONFIGURAÇÕES</a>
+                    <input type="checkbox" id="showDrop3">
+                    <label for="showDrop3" class="mobile-item">CONFIGURAÇÕES</label>
+                    <ul class="drop-menu configuracoes-links"></ul>
+                </li>
+            </ul>
+            <div class="header-icons">
+                <a href="#" class="profile-icon" id="profileLink" aria-label="Profile">
+                    <i class="bx bx-user"></i>
+                </a>
+            </div>
+            <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+        </div>
+    </nav>
+
+
+
+<div class="ratao">
+    <h1 class="text-center mb-4">Lista de Fornecedores</h1>
+    <div class="text-center">
+        <a href="{% url 'cadastrar_fornecedor' %}" class="btn btn-primary">Cadastrar Novo Fornecedor</a>
+    </div>
+    <div class="row justify-content-center">
+        {% for fornecedor in fornecedores %}
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                {% if fornecedor.foto %}
+                    <img src="{{ fornecedor.foto.url }}" class="card-img-top" alt="{{ fornecedor.nome }}">
+                {% elif fornecedor.foto_url %}
+                    <img src="{{ fornecedor.foto_url }}" class="card-img-top" alt="{{ fornecedor.nome }}">
+                {% else %}
+                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="Imagem não disponível">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ fornecedor.nome }}</h5>
+                    <p class="card-text"><strong>Endereço:</strong> {{ fornecedor.endereco }}</p>
+                    <p class="card-text"><strong>Telefone:</strong> {{ fornecedor.telefone }}</p>
+                    <p class="card-text"><strong>Email:</strong> {{ fornecedor.email }}</p>
+                    <p class="card-text"><strong>Serviços:</strong> {{ fornecedor.servicos }}</p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center">Nenhum fornecedor encontrado.</p>
+        {% endfor %}
+    </div>
+</div>
+
+        <footer>
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-section">
+                    <img src="{% static 'TCC/images/unnamed (1).png' %}" alt="Logo Sistema de Estoque">                </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Conecte-se Conosco</h4>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/store._stock/"><i class='bx bxl-instagram'></i></a>
+                        <a href="https://github.com/TavinScapi/STOCK.STORE.git"><i class='bx bxl-github'></i></a>
+                        <a href="https://www.facebook.com/?locale=pt_BR"><i class='bx bxl-facebook'></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2024 STOCK.STORE | Todos os direitos reservados. Gerencie com eficiência!</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script>
+    // Definindo o caminho com base no tipo de usuário
+    const userRole = localStorage.getItem('userRole'); // 'admin' ou 'funcionario'
+
+    // Selecionando os elementos que serão alterados
+    const profileLink = document.getElementById('profileLink');
+    const estoqueLinks = document.querySelector('.estoque-links');
+    const relatoriosLinks = document.querySelector('.relatorios-links');
+    const configuracoesLinks = document.querySelector('.configuracoes-links');
+    const buttonContainer = document.getElementById('user-buttons');
+
+    if (userRole === 'admin') {
+        // Caminhos para administradores
+        estoqueLinks.innerHTML = `
+            <li><a href="{% url 'lista_produtos' %}"><i class="fas fa-th"></i> Estoque Geral</a></li>
+            <li><a href="{% url 'forn' %}"><i class="fas fa-truck"></i> Fornecedores</a></li>
+            <li><a href="{% url 'adicionar_produto' %}"><i class="fas fa-arrow-right"></i> Entradas</a></li>
+            <li><a href="{% url 'remover_produto' %}"><i class="fas fa-arrow-left"></i> Saídas</a></li>
+        `;
+
+        relatoriosLinks.innerHTML = `
+            <li><a href="{% url 'relatorio' %}"><i class="fas fa-clipboard-list"></i> Relatórios</a></li>
+            <li><a href="{% url 'forn' %}"><i class="fas fa-file-alt"></i> Fornecedores</a></li>
+        `;
+
+        configuracoesLinks.innerHTML = `
+            <li><a href="{% url 'USER' %}"><i class="fas fa-users"></i> Usuários</a></li>
+        `;
+
+        // Caminho para o perfil do admin
+        profileLink.href = "{% url 'perfilADM' %}";
+
+        // Botões para administradores
+        buttonContainer.innerHTML = `
+            <div class="button-group">
+                <button class="function-button" onclick="window.location.href='/ESTOQUE/estoque.html'">
+                    <i class="fas fa-th"></i> Estoque
+                </button>
+                <button class="function-button" onclick="window.location.href='/FORNECEDORES/fornecedores.html'">
+                    <i class="fas fa-truck"></i> Fornecedores
+                </button>
+                <button class="function-button" onclick="window.location.href='/ESTOQUE/entrada.html'">
+                    <i class="fas fa-arrow-right"></i> Entradas
+                </button>
+                <button class="function-button" onclick="window.location.href='/ESTOQUE/saida.html'">
+                    <i class="fas fa-arrow-left"></i> Saídas
+                </button>
+            </div>
+        `;
+
+        // Exibe conteúdo específico para admin
+        document.getElementById('adminContent').style.display = 'block';
+
+    } else {
+        // Esconde o conteúdo de admin se o papel não for admin
+        document.getElementById('adminContent').style.display = 'none';
+    }
+
+    // Mobile menu toggle
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    mobileMenuToggle.addEventListener('click', function () {
+        navLinks.classList.toggle('active');
+    });
+
+    const dropdownLinks = document.querySelectorAll('.dropdown-content li');
+
+    dropdownLinks.forEach(link => {
+        link.addEventListener('click', function () {
+            navLinks.classList.remove('active');
+        });
+    });
+
+</script>
+</body>
+</html>

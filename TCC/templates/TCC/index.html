@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>STOCK.STORE</title>
+    <meta name="description" content="Gerencie seu almoxarifado de forma eficiente com o nosso sistema de estoque. Controle de inventário, produtos e relatórios.">
+    <meta name="keywords" content="estoque, almoxarifado, controle, inventário, gestão de estoque, produtos">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'TCC/index.css' %}">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="icon" type="image/png" href="{% static 'TCC/images/INCON-LOGO.png' %}" sizes="32x32">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="{% url 'index' %}">
+                <img src="{% static 'TCC/images/unnamed (1).png' %}" alt="Logo Sistema de Estoque">
+            </a>
+        </div>
+        <div class="header-icons">
+            <a href="#" class="profile-icon" aria-label="Profile" onclick="showLoginAlert()">
+                <i class="bx bx-user"></i>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-content">
+                <img src="{% static 'TCC/images/logoBOM.png' %}" alt="Logo Sistema de Estoque" class="hero-logo">
+                <h1>Bem-vindo ao STOCK.STORE</h1>
+                <div class="button-container">
+                    <button onclick="redirectTo('admin')">Entrar como Admin</button>
+                    <button onclick="redirectTo('funcionario')">Entrar como Funcionário</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-section">
+                    <img src="{% static 'TCC/images/unnamed (1).png' %}" alt="Logo Sistema de Estoque" class="footer-logo">
+                </div>
+
+                <div class="footer-section">
+                    <h4>Conecte-se Conosco</h4>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/store._stock/" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+                        <a href="https://github.com/TavinScapi/STOCK.STORE.git" aria-label="GitHub"><i class='bx bxl-github'></i></a>
+                        <a href="https://www.facebook.com/?locale=pt_BR" aria-label="Facebook"><i class='bx bxl-facebook'></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2024 STOCK.STORE | Todos os direitos reservados. Gerencie com eficiência!</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Ícone de Contato -->
+    <div class="contact-icon" id="contactIcon" role="button" aria-label="Abrir formulário de contato">
+        <i class='bx bxs-envelope'></i>
+    </div>
+
+    <!-- Modal Popup -->
+    <div class="modal" id="contactModal" aria-hidden="true" aria-labelledby="modalTitle" role="dialog">
+        <div class="modal-content">
+            <span class="close" id="closeModal" role="button" aria-label="Fechar modal">&times;</span>
+            <h2 id="modalTitle">Entre em Contato</h2>
+            <form id="emailForm" aria-label="Formulário de Contato">
+                <label for="name">Nome:</label>
+                <input type="text" id="name" name="name" placeholder="Seu nome" required aria-required="true">
+
+                <label for="email">Seu Email:</label>
+                <input type="email" id="email" name="email" placeholder="Seu email" required aria-required="true">
+
+                <label for="message">Mensagem:</label>
+                <textarea id="message" name="message" placeholder="Coloque sua mensagem" required aria-required="true"></textarea>
+
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        // Inicializar EmailJS
+        (function () {
+            emailjs.init("mtVLFz5y_caSMv_Z6");  // Seu User ID do EmailJS
+        })();
+
+        document.getElementById('emailForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            emailjs.sendForm('service_8rj88ii', 'template_1v46c2l', this)
+                .then(function () {
+                    alert('Email enviado com sucesso!');
+                    document.getElementById('emailForm').reset(); // Limpa os campos do formulário após o envio
+                }, function (error) {
+                    alert('Erro ao enviar email: ' + JSON.stringify(error));
+                });
+        });
+
+        // Abrir e fechar modal
+        const contactIcon = document.getElementById('contactIcon');
+        const contactModal = document.getElementById('contactModal');
+        const closeModal = document.getElementById('closeModal');
+
+        contactIcon.addEventListener('click', function () {
+            contactModal.style.display = 'flex';  // Exibe o modal
+        });
+
+        closeModal.addEventListener('click', function () {
+            contactModal.style.display = 'none';  // Fecha o modal
+        });
+
+        // Fecha o modal se clicar fora da caixa de conteúdo
+        window.addEventListener('click', function (event) {
+            if (event.target == contactModal) {
+                contactModal.style.display = 'none';
+            }
+        });
+
+        function redirectTo(userType) {
+    if (userType === 'admin') {
+        window.location.href = "{% url 'login_admin' %}";
+    } else if (userType === 'funcionario') {
+        window.location.href = "{% url 'login_funcionario' %}";
+    }
+}
+
+    </script>
+
+</body>
+
+</html>

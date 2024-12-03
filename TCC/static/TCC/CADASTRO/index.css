@@ -1,0 +1,253 @@
+/* Reset de margens e padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: Poppins, sans-serif;
+    background-color: rgb(0, 0, 0);
+    overflow-x: hidden;
+}
+
+/* Imagem de fundo */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/IMAGENS/fundoedit.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+    z-index: -1;
+    transition: opacity 0.5s ease;
+}
+
+/* Container principal */
+.container {
+    display: flex;
+    width: 900px;
+    height: 480px;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Imagem do formulário */
+.form-image {
+    background-color: #E30613;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+.form-image img {
+    max-width: 300px;
+    height: auto;
+}
+
+/* Conteúdo do formulário */
+.form-content {
+    width: 50%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-content h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Grupo de inputs */
+.input-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-between;
+}
+
+.input-box {
+    width: 48%;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.input-box label {
+    font-size: 14px;
+    color: #333;
+}
+
+.input-box1 {
+    width: 100%;
+}
+
+.input-box1 input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Botão de continuar */
+.continue-button {
+    margin-top: 20px;
+    text-align: center;
+    display: flex; /* Adicione flexbox para o container dos botões */
+    gap: 10px; /* Espaçamento entre os botões */
+}
+
+.continue-button button {
+    flex: 1; /* Faz com que ambos os botões tenham o mesmo tamanho */
+    background-color: #E30613;
+    color: white;
+    border: none;
+    padding: 10px; /* Ajuste o padding se necessário */
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Transição suave para o hover */
+}
+
+.continue-button .oi {
+    flex: 1; /* Faz com que ambos os botões tenham o mesmo tamanho */
+    background-color: #ccc;
+    color: #333;
+    border: none;
+    padding: 10px; /* Ajuste o padding se necessário */
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Transição suave para o hover */
+}
+
+.continue-button button:hover {
+    background-color: #999;
+}
+
+/* Media Queries para responsividade */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Muda para coluna em telas pequenas */
+        width: 90vw; /* A largura passa a ser 90% da tela */
+        height: auto; /* Altura automática */
+    }
+
+    .form-image {
+        width: 100%; /* Imagem ocupa 100% da largura */
+    }
+
+    .form-content {
+        width: 100%; /* Conteúdo ocupa 100% da largura */
+        padding: 20px; /* Ajusta o padding */
+    }
+
+    .form-image img {
+        max-width: 70%; /* Ajusta a largura da imagem em telas pequenas */
+    }
+
+    .input-box {
+        width: 100%; /* Inputs ocupam 100% da largura */
+    }
+
+    .continue-button {
+        flex-direction: column; /* Empilha os botões em telas pequenas */
+    }
+
+    .continue-button button {
+        margin: 5px 0; /* Margem entre os botões empilhados */
+    }
+}
+
+
+.suggest-button {
+    background-color: #999; /* Cor azul */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 3px;
+}
+
+.suggest-button:hover {
+    background-color: #333; /* Azul escuro ao passar o mouse */
+}
+.suggestion {
+    display: block;
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 5px;
+}
+
+.input-box {
+    position: relative;
+}
+
+        /* Estilo para o card de sugestão */
+        .suggestion-card {
+            position: absolute;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: none; /* Escondido por padrão */
+            z-index: 10;
+        }
+        .suggestion-card p {
+            margin: 0;
+            font-size: 14px;
+        }
+        .suggestion-card button {
+            background-color: #E30613;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            margin-top: 5px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .suggestion-card button:hover {
+            background-color: #E30613;
+        }
+
+        /* Estilo para o botão de mostrar senha */
+        .show-password-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            top: 35px;
+            font-size: 16px;
+            color: #555;
+        }
+        .show-password-btn:hover {
+            color: #000;
+        }
+        .input-box {
+            position: relative; /* Necessário para posicionar o botão dentro do input */
+        }

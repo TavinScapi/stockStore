@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>STOCK.STORE</title>
+    <meta name="description"
+        content="Gerencie seu almoxarifado de forma eficiente com o nosso sistema de estoque. Controle de inventário, produtos e relatórios.">
+    <meta name="keywords" content="estoque, almoxarifado, controle, inventário, gestão de estoque, produtos">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'TCC/HOME/index.css' %}">
+    <script src="menu.js" defer></script>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="icon" type="image/png" href="{% static 'TCC/images/INCON-LOGO.png' %}" sizes="32x32">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav>
+        <div class="wrapper">
+            <div class="logo">
+            <a href="{% url 'home' %}">
+                <img src="{% static 'TCC/images/unnamed (1).png' %}" alt="Logo Sistema de Estoque">
+            </a>
+            </div>
+            <input type="radio" name="slider" id="menu-btn">
+            <input type="radio" name="slider" id="close-btn">
+            <ul class="nav-links">
+                <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+
+                <!-- Links de Estoque -->
+                <li class="menu-item">
+                    <a href="#" class="desktop-item">ESTOQUE</a>
+                    <input type="checkbox" id="showDrop1">
+                    <label for="showDrop1" class="mobile-item">ESTOQUE</label>
+                    <ul class="drop-menu estoque-links"></ul>
+                </li>
+
+                <!-- Links de Relatórios -->
+                <li class="menu-item">
+                    <a href="#" class="desktop-item">RELATÓRIOS</a>
+                    <input type="checkbox" id="showDrop2">
+                    <label for="showDrop2" class="mobile-item">RELATÓRIOS</label>
+                    <ul class="drop-menu relatorios-links"></ul>
+                </li>
+
+                <!-- Links de Configurações -->
+                <li class="menu-item">
+                    <a href="#" class="desktop-item">CONFIGURAÇÕES</a>
+                    <input type="checkbox" id="showDrop3">
+                    <label for="showDrop3" class="mobile-item">CONFIGURAÇÕES</label>
+                    <ul class="drop-menu configuracoes-links"></ul>
+                </li>
+            </ul>
+            <div class="header-icons">
+                <a href="#" class="profile-icon" id="profileLink" aria-label="Profile">
+                    <i class="bx bx-user"></i>
+                </a>
+            </div>
+            <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+        </div>
+    </nav>
+<br><br><br>
+    <main>
+        <section class="introducao">
+            <div class="descricao-imagem">
+                <div class="texto-introducao">
+                    <h2>STOCK.STORE - Sua Solução de Gerenciamento de Almoxarifado</h2>
+                    <p>
+                        Com o sistema STOCK.STORE você terá total controle sobre o estoque de sua empresa.
+                        Facilite o armazenamento, movimentação e monitoramento de materiais, garantindo uma operação
+                        eficiente e segura.
+                    </p>
+                </div>
+                <div class="imagem-introducao">
+                <img src="{% static 'TCC/images/galpoes-logisticos.jpg' %}" alt="Logo Sistema de Estoque">                </div>
+            </div>
+        </section>
+
+        <section id="user-buttons" class="user-buttons">
+            <div id="buttonContainer"></div>
+        </section>
+
+        <!-- Informações Principais -->
+        <section class="informacoes-principais">
+            <div class="grid-container">
+                <div class="grid-item">
+                    <h3>Gestão de Inventário</h3>
+                    <p>Controle todo o inventário da sua empresa em um só lugar. Adicione, edite e monitore os produtos
+                        com facilidade.</p>
+                </div>
+                <div class="grid-item">
+                    <h3>Relatórios Personalizados</h3>
+                    <p>Obtenha insights detalhados com relatórios customizáveis que ajudam a entender o fluxo de estoque
+                        e a prever demandas.</p>
+                </div>
+                <div class="grid-item">
+                    <h3>Movimentação de Produtos</h3>
+                    <p>Registre entradas e saídas de produtos de forma rápida e simplificada, mantendo seu estoque
+                        sempre atualizado.</p>
+                </div>
+                <div class="grid-item">
+                    <h3>Fornecedores Integrados</h3>
+                    <p>Gerencie seus fornecedores diretamente no sistema, facilitando o controle de compras e
+                        reabastecimento.</p>
+                </div>
+            </div>
+        </section>
+
+<section class="site-info">
+    <div class="container">
+        <h2>Sobre o STOCK.STORE</h2>
+        <p>
+            O <strong>STOCK.STORE</strong> é a solução definitiva para gestão de estoques e almoxarifados.
+            Criado para empresas de todos os tamanhos, nosso sistema combina tecnologia de ponta com simplicidade de uso,
+            ajudando você a controlar, monitorar e otimizar o fluxo de materiais e produtos com eficiência.
+        </p>
+
+        <div class="info-grid">
+            <div class="info-item">
+                <h3>🌟 Nossa Missão</h3>
+                <p>
+                    Transformar a gestão de estoques em um processo simples, inteligente e eficiente,
+                    permitindo que nossos clientes foquem no que realmente importa: o crescimento de seus negócios.
+                </p>
+            </div>
+            <div class="info-item">
+                <h3>🚀 Nossos Diferenciais</h3>
+                <ul>
+                    <li>Interface intuitiva e moderna, acessível para todos os usuários.</li>
+                    <li>Automatização de processos repetitivos para economizar tempo.</li>
+                    <li>Integração com fornecedores para gestão completa de reabastecimentos.</li>
+                    <li>Relatórios avançados para análises estratégicas e tomada de decisão.</li>
+                </ul>
+            </div>
+            <div class="info-item">
+                <h3>📞 Fale Conosco</h3>
+                <p>Tem dúvidas ou precisa de ajuda? Estamos aqui para você!</p>
+                <ul>
+                    <li>Email: <a href="mailto:contato@stockstore.com">contato@stockstore.com</a></li>
+                    <li>Telefone: (11) 1234-5678</li>
+                    <li>Redes Sociais:
+                        <a href="https://www.instagram.com/store._stock/"><i class='bx bxl-instagram'></i></a>
+                        <a href="https://github.com/TavinScapi/STOCK.STORE.git"><i class='bx bxl-github'></i></a>
+                        <a href="https://www.facebook.com/?locale=pt_BR"><i class='bx bxl-facebook'></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <section id="blog" class="blog">
+            <h2>Atualizações Recentes</h2>
+            <div class="blog-container">
+                <article class="blog-post">
+                    <h3>Nova Funcionalidade: Controle de Entradas</h3>
+                    <p>Adicionamos a funcionalidade de controle de entradas de produtos para melhor gestão do estoque.
+                    </p>
+                    <a href="#">Leia mais</a>
+                </article>
+                <article class="blog-post">
+                    <h3>Relatórios Customizáveis</h3>
+                    <p>Agora você pode personalizar seus relatórios para obter insights mais precisos.</p>
+                    <a href="#">Leia mais</a>
+                </article>
+                <article class="blog-post">
+                    <h3>Melhorias no Sistema de Fornecedores</h3>
+                    <p>Otimizamos o cadastro e o gerenciamento de fornecedores para facilitar o controle de compras.</p>
+                    <a href="#">Leia mais</a>
+                </article>
+            </div>
+        </section>
+
+    </main>
+    <footer>
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-section">
+                    <img src="{% static 'TCC/images/unnamed (1).png' %}" alt="Logo Sistema de Estoque">                </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Conecte-se Conosco</h4>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/store._stock/"><i class='bx bxl-instagram'></i></a>
+                        <a href="https://github.com/TavinScapi/STOCK.STORE.git"><i class='bx bxl-github'></i></a>
+                        <a href="https://www.facebook.com/?locale=pt_BR"><i class='bx bxl-facebook'></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2024 STOCK.STORE | Todos os direitos reservados. Gerencie com eficiência!</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Ícone de Contato -->
+    <div class="contact-icon" id="contactIcon">
+        <i class='bx bxs-envelope'></i>
+    </div>
+
+    <!-- Modal Popup -->
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Entre em Contato</h2>
+            <form id="emailForm">
+                <label for="name">Nome:</label>
+                <input type="text" id="name" name="name" placeholder="Seu nome" required>
+
+                <label for="email">Seu Email:</label>
+                <input type="email" id="email" name="email" placeholder="Seu email" required>
+
+                <label for="message">Mensagem:</label>
+                <textarea id="message" name="message" placeholder="Coloque sua mensagem" required></textarea>
+
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+    <style>
+        /* Estilo do Popup (Modal) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        /* Estilo do Formulário no Popup */
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        form input,
+        form textarea {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        form button {
+            padding: 10px;
+            background-color: #E30613;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* Estilo do Ícone de Contato */
+        .contact-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #981921;
+            color: rgb(255, 255, 255);
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contact-icon:hover {
+            background-color: #000000;
+        }
+    </style>
+
+<!-- Scripts -->
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<!-- Importa a biblioteca EmailJS, que permite enviar emails diretamente do cliente sem precisar de back-end -->
+
+<script>
+    // Inicializar EmailJS
+    (function () {
+        // Função autoexecutável para inicializar o EmailJS
+        emailjs.init("mtVLFz5y_caSMv_Z6");
+        // Inicializa o EmailJS com o ID do usuário fornecido por sua conta no serviço
+    })();
+
+    // Adiciona um evento de envio ao formulário com o ID 'emailForm'
+    document.getElementById('emailForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        // Previne o comportamento padrão do formulário, que seria recarregar a página
+
+        emailjs.sendForm('service_8rj88ii', 'template_1v46c2l', this)
+        // Usa o método sendForm do EmailJS para enviar os dados do formulário
+        // 'service_8rj88ii' é o ID do serviço configurado no EmailJS
+        // 'template_1v46c2l' é o ID do template de email configurado no EmailJS
+        // 'this' refere-se ao formulário enviado
+            .then(function () {
+                // Função executada se o email for enviado com sucesso
+                alert('Email enviado com sucesso!');
+                // Exibe uma mensagem de sucesso para o usuário
+
+                document.getElementById('emailForm').reset();
+                // Limpa os campos do formulário após o envio
+            }, function (error) {
+                // Função executada se houver erro no envio do email
+                alert('Erro ao enviar email: ' + JSON.stringify(error));
+                // Exibe uma mensagem de erro com detalhes para o usuário
+            });
+    });
+
+    // Abrir e fechar modal
+    const contactIcon = document.getElementById('contactIcon');
+    // Seleciona o elemento com o ID 'contactIcon', que será usado para abrir o modal
+
+    const contactModal = document.getElementById('contactModal');
+    // Seleciona o elemento do modal com o ID 'contactModal'
+
+    const closeModal = document.getElementById('closeModal');
+    // Seleciona o elemento com o ID 'closeModal', que será usado para fechar o modal
+
+    contactIcon.addEventListener('click', function () {
+        // Adiciona um evento de clique ao ícone de contato
+        contactModal.style.display = 'flex';
+        // Define o estilo de exibição do modal como 'flex' para que ele apareça na tela
+    });
+
+    closeModal.addEventListener('click', function () {
+        // Adiciona um evento de clique ao botão de fechar o modal
+        contactModal.style.display = 'none';
+        // Define o estilo de exibição do modal como 'none' para ocultá-lo
+    });
+
+    // Fecha o modal se o usuário clicar fora da área de conteúdo
+    window.addEventListener('click', function (event) {
+        if (event.target == contactModal) {
+            // Verifica se o elemento clicado é o modal (fora da área de conteúdo)
+            contactModal.style.display = 'none';
+            // Oculta o modal
+        }
+    });
+</script>
+
+<script>
+    // Definindo o caminho com base no tipo de usuário
+    const userRole = localStorage.getItem('userRole'); // 'admin' ou 'funcionario'
+
+    // Selecionando os elementos que serão alterados
+    const profileLink = document.getElementById('profileLink');
+    const estoqueLinks = document.querySelector('.estoque-links');
+    const relatoriosLinks = document.querySelector('.relatorios-links');
+    const configuracoesLinks = document.querySelector('.configuracoes-links');
+    const buttonContainer = document.getElementById('user-buttons');
+
+    if (userRole === 'admin') {
+        // Caminhos para administradores
+        estoqueLinks.innerHTML = `
+            <li><a href="{% url 'lista_produtos' %}"><i class="fas fa-th"></i> Estoque Geral</a></li>
+            <li><a href="{% url 'forn' %}"><i class="fas fa-truck"></i> Fornecedores</a></li>
+            <li><a href="{% url 'adicionar_produto' %}"><i class="fas fa-arrow-right"></i> Entradas</a></li>
+            <li><a href="{% url 'remover_produto' %}"><i class="fas fa-arrow-left"></i> Saídas</a></li>
+        `;
+
+        relatoriosLinks.innerHTML = `
+            <li><a href="{% url 'relatorio' %}"><i class="fas fa-clipboard-list"></i> Relatórios</a></li>
+            <li><a href="{% url 'forn' %}"><i class="fas fa-file-alt"></i> Fornecedores</a></li>
+        `;
+
+        configuracoesLinks.innerHTML = `
+            <li><a href="{% url 'USER' %}"><i class="fas fa-users"></i> Usuários</a></li>
+        `;
+
+        // Caminho para o perfil do admin
+        profileLink.href = "{% url 'perfilADM' %}";
+
+        // Botões para administradores
+        buttonContainer.innerHTML = `
+        <div class="button-group">
+            <button class="function-button" onclick="window.location.href='{% url 'lista_produtos' %}'">
+                <i class="fas fa-th"></i> Estoque Geral
+            </button>
+            <button class="function-button" onclick="window.location.href='{% url 'forn' %}'">
+                <i class="fas fa-truck"></i> Fornecedores
+            </button>
+            <button class="function-button" onclick="window.location.href='{% url 'adicionar_produto' %}'">
+                <i class="fas fa-arrow-right"></i> Entradas
+            </button>
+            <button class="function-button" onclick="window.location.href='{% url 'remover_produto' %}'">
+                <i class="fas fa-arrow-left"></i> Saídas
+            </button>
+        </div>
+        `;
+
+        // Exibe conteúdo específico para admin
+        document.getElementById('adminContent').style.display = 'block';
+
+    } else {
+        // Esconde o conteúdo de admin se o papel não for admin
+        document.getElementById('adminContent').style.display = 'none';
+    }
+
+    // Mobile menu toggle
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    mobileMenuToggle.addEventListener('click', function () {
+        navLinks.classList.toggle('active');
+    });
+
+    const dropdownLinks = document.querySelectorAll('.dropdown-content li');
+
+    dropdownLinks.forEach(link => {
+        link.addEventListener('click', function () {
+            navLinks.classList.remove('active');
+        });
+    });
+
+</script>
+
+</body>
+
+</html>

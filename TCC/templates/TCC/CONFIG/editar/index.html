@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>STOCK.STORE</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'TCC/CONFIG/editar/index.css' %}">
+                <link rel="icon" type="image/png" href="{% static 'TCC/images/INCON-LOGO.png' %}" sizes="32x32">
+
+
+</head>
+<body>
+    <h1>Editar Funcionário</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-grid">
+            <div class="input-group">
+                <label for="firstname">Nome:</label>
+                {{ form.firstname }}
+            </div>
+            <div class="input-group">
+                <label for="lastname">Sobrenome:</label>
+                {{ form.lastname }}
+            </div>
+            <div class="input-group">
+                <label for="email">Email:</label>
+                {{ form.email }}
+            </div>
+            <div class="input-group">
+                <label for="phone">Telefone:</label>
+                {{ form.phone }}
+            </div>
+            <div class="input-group">
+                <label for="username">Usuário:</label>
+                {{ form.username }}
+            </div>
+        </div>
+        <div class="button-group">
+            <button type="submit">Salvar</button>
+            <a href="{% url 'USER' %}">Cancelar</a>
+        </div>
+    </form>
+
+</body>
+</html>

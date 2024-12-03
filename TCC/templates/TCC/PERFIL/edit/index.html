@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+        {% load static %}
+    <meta charset="UTF-8">
+    <title>STOCK.STORE</title>
+        <link rel="icon" type="image/png" href="{% static 'TCC/images/INCON-LOGO.png' %}" sizes="32x32">
+
+    <link rel="stylesheet" href="{% static 'TCC/CADASTRO/index.css' %}"> <!-- Certifique-se de incluir seu CSS -->
+</head>
+<body>
+    <div class="container">
+        <div class="form-image">
+            <img src="{% static 'TCC/images/editarFUNC.png' %}" alt="Imagem de edição" />
+        </div>
+        <div class="form-content">
+            <h1>Editar Perfil</h1>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="input-group">
+                    <div class="input-box">
+                        <label for="firstname">Primeiro Nome:</label>
+                        {{ form.firstname }}
+                    </div>
+
+                    <div class="input-box">
+                        <label for="lastname">Sobrenome:</label>
+                        {{ form.lastname }}
+                    </div>
+
+                    <div class="input-box">
+                        <label for="email">Email:</label>
+                        {{ form.email }}
+                    </div>
+
+                    <div class="input-box">
+                        <label for="phone">Telefone:</label>
+                        {{ form.phone }}
+                    </div>
+
+                    <div class="input-box">
+                        <label for="username">Usuário:</label>
+                        {{ form.username }}
+                    </div>
+
+                    <div class="input-box1">
+                        <label for="photo">Foto:</label>
+                        {{ form.photo }}
+                    </div>
+                </div>
+
+                <div class="continue-button">
+                    <button type="submit">Salvar</button>
+                    <a href="{% url 'perfilFUNC' %}" class="suggest-button">Voltar para o perfil</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

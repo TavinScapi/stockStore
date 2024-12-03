@@ -1,0 +1,305 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos Globais */
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* Estilo do Cabeçalho */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #E30613;
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+    height: 50px;
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.1);
+}
+
+.header-icons a {
+    font-size: 24px;
+    color: #ffffff;
+    margin-left: 20px;
+    transition: color 0.3s ease;
+}
+
+.header-icons a:hover {
+    color: #000000;
+}
+
+/* Seção Hero */
+.hero-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('images/fundoedit.png');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+}
+
+.hero-logo {
+    margin-top: -100px;
+    width: 350px;
+}
+
+h1 {
+    font-size: 50px;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+button {
+    padding: 15px 30px;
+    background-color: #E30613;
+    color: white;
+    border: none;
+    border-radius: 45px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 300px; /* Define uma largura fixa para os botões */
+    text-align: center; /* Garante que o texto fique centralizado */
+}
+
+button:hover {
+    background-color: #981921;
+    transform: translateY(-3px);
+}
+
+
+/* Estilos do Rodapé */
+footer {
+    background-color: #E30613;
+    color: #f8f9fa;
+    padding-top: 30px;
+    text-align: center;
+}
+
+.footer-top {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.footer-section {
+    margin-bottom: 20px;
+}
+
+.footer-logo {
+    width: 150px;
+    margin: 0 auto;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-links a {
+    color: #f8f9fa;
+    font-size: 24px;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #000;
+}
+
+.footer-bottom {
+    background-color: #292b2c;
+    text-align: center;
+    padding: 15px 0;
+}
+
+.footer-bottom p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+/* Estilo do Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 40px;
+    }
+
+    .button-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .container {
+        text-align: center;
+    }
+
+    .footer-logo {
+        margin-bottom: 10px;
+    }
+
+    .social-links {
+        margin-top: 10px;
+    }
+}
+
+/* Barra de rolagem personalizada */
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #11212d;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #155a9e;
+}
+
+/* Estilo do Popup (Modal) */
+.modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    padding: 40px;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    color: #333;
+    cursor: pointer;
+}
+
+/* Estilo do Formulário no Popup */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+form input,
+form textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+form button {
+    padding: 10px;
+    background-color: #761e24;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Estilo do Ícone de Contato */
+.contact-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #761e24;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    z-index: 9999;
+}
+
+.contact-icon:hover {
+    background-color: #000000;
+}

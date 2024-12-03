@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STOCK.STORE</title>
+    {% load static %}
+                <link rel="icon" type="image/png" href="{% static 'TCC/images/INCON-LOGO.png' %}" sizes="32x32">
+
+    <link rel="stylesheet" href="{% static 'TCC/CADASTRO/index.css' %}"> <!-- link ao seu arquivo CSS -->
+    <style>
+        /* Estilo para o card de sugestão */
+        .suggestion-card {
+            position: absolute;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: none; /* Escondido por padrão */
+            z-index: 10;
+        }
+        .suggestion-card p {
+            margin: 0;
+            font-size: 14px;
+        }
+        .suggestion-card button {
+            background-color: #E30613;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            margin-top: 5px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .suggestion-card button:hover {
+            background-color: #E30613;
+        }
+
+        /* Estilo para o botão de mostrar senha */
+        .show-password-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            top: 35px;
+            font-size: 16px;
+            color: #555;
+        }
+        .show-password-btn:hover {
+            color: #000;
+        }
+        .input-box {
+            position: relative; /* Necessário para posicionar o botão dentro do input */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-image">
+            <img src="{% static 'TCC/images/New employee-rafiki.png' %}" alt="Imagem do formulário">
+        </div>
+
+        <div class="form-content">
+            <h1>Cadastro de Funcionário</h1>
+            <form method="post">
+                {% csrf_token %}
+                <div class="input-group">
+                    <div class="input-box">
+                        <label for="firstname">Primeiro Nome</label>
+                        {{ form.firstname }}
+                    </div>
+
+                    <div class="input-box">
+                        <label for="lastname">Sobrenome</label>
+                        {{ form.lastname }}
+                    </div>
+                </div>
+
+                <div class="input-box1">
+                    <label for="email">Email</label>
+                    {{ form.email }}
+                </div>
+
+                <div class="input-box1">
+                    <label for="phone">Celular</label>
+                    {{ form.phone }}
+                </div>
+
+                <div class="input-group">
+                    <div class="input-box">
+                        <label for="username">Usuário</label>
+                        {{ form.username }}
+                        <div id="username-suggestion-card" class="suggestion-card">
+                            <p id="username-suggestion-text">Sugerido: </p>
+                            <button onclick="copiarSugestao('username')">Copiar</button>
+                        </div>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="password">Senha</label>
+                        {{ form.password }}
+                        <div id="password-suggestion-card" class="suggestion-card">
+                            <p id="password-suggestion-text">Sugerido: </p>
+                            <button onclick="copiarSugestao('password')">Copiar</button>
+                        </div>
+                        <button type="button" class="show-password-btn" onclick="toggleSenha('password')">👁</button>
+                    </div>
+                </div>
+
+                <div class="input-box1">
+                    <label for="confirm_password">Confirme a Senha</label>
+                    {{ form.confirm_password }}
+                    <button type="button" class="show-password-btn" onclick="toggleSenha('confirm_password')">👁</button>
+                </div>
+
+                <div class="continue-button">
+                    <button type="submit">Cadastrar</button>
+                    <button type="button" class="oi" onclick="window.location.href='/'">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<script>
+function toggleSenha(campoId) {
+    const campo = document.querySelector(`input[name="${campoId}"]`);
+    campo.type = campo.type === "password" ? "text" : "password";
+}
+
+
+function sugerirUsuario() {
+    const primeiroNome = document.querySelector('input[name="firstname"]').value.toLowerCase();
+    const sobrenome = document.querySelector('input[name="lastname"]').value.toLowerCase();
+    const numeroAleatorio = Math.floor(Math.random() * 1000);
+
+    if (primeiroNome && sobrenome) {
+        const usuarioSugerido = `${primeiroNome}.${sobrenome.substring(0, 3)}${numeroAleatorio}`;
+        document.getElementById("username-suggestion-text").textContent = `Sugerido: ${usuarioSugerido}`;
+        document.getElementById("username-suggestion-card").style.display = "block";
+    } else {
+        document.getElementById("username-suggestion-text").textContent = "Preencha o primeiro nome e o sobrenome.";
+    }
+}
+
+function sugerirSenha() {
+    const caracteres = "abcdefghijklmnopqrstuvwxyz";
+    const caracteresMaiusculos = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const numeros = "0123456789";
+    const especiais = "!@#$%^&*()_+{}[]<>?";
+
+    let senhaSugerida = "";
+    senhaSugerida += caracteres[Math.floor(Math.random() * caracteres.length)];
+    senhaSugerida += caracteresMaiusculos[Math.floor(Math.random() * caracteresMaiusculos.length)];
+    senhaSugerida += numeros[Math.floor(Math.random() * numeros.length)];
+    senhaSugerida += especiais[Math.floor(Math.random() * especiais.length)];
+
+    const todosCaracteres = caracteres + caracteresMaiusculos + numeros + especiais;
+    for (let i = senhaSugerida.length; i < 12; i++) {
+        senhaSugerida += todosCaracteres[Math.floor(Math.random() * todosCaracteres.length)];
+    }
+
+    document.getElementById("password-suggestion-text").textContent = `Sugerido: ${senhaSugerida}`;
+    document.getElementById("password-suggestion-card").style.display = "block";
+}
+
+function copiarSugestao(tipo) {
+    const campo = document.querySelector(`input[name="${tipo}"]`);
+    const sugestao = tipo === "username" ? document.getElementById("username-suggestion-text").textContent.split(": ")[1]
+                                         : document.getElementById("password-suggestion-text").textContent.split(": ")[1];
+    campo.value = sugestao;
+    alert(`${tipo.charAt(0).toUpperCase() + tipo.slice(1)} copiado: ${sugestao}`);
+}
+
+// Eventos de foco para mostrar sugestões
+document.querySelector('input[name="username"]').addEventListener('focus', sugerirUsuario);
+document.querySelector('input[name="password"]').addEventListener('focus', sugerirSenha);
+
+// Eventos de input para ocultar as sugestões quando o usuário começar a digitar
+document.querySelector('input[name="username"]').addEventListener('input', () => {
+    document.getElementById("username-suggestion-card").style.display = "none";
+});
+document.querySelector('input[name="password"]').addEventListener('input', () => {
+    document.getElementById("password-suggestion-card").style.display = "none";
+});
+
+// Esconde o card quando clicado fora
+document.addEventListener('click', function(event) {
+    if (!event.target.closest('.input-box') && !event.target.closest('.suggestion-card')) {
+        document.getElementById("username-suggestion-card").style.display = "none";
+        document.getElementById("password-suggestion-card").style.display = "none";
+    }
+});
+
+document.querySelector('form').addEventListener('submit', function(event) {
+    const senha = document.querySelector('input[name="password"]').value;
+    const confirmSenha = document.querySelector('input[name="confirm_password"]').value;
+    if (senha !== confirmSenha) {
+        event.preventDefault();
+        alert("As senhas não coincidem. Por favor, verifique.");
+    }
+});
+
+
+</script>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        {% load static %}
+
+    <meta charset="UTF-8">
+    <title>STOCK.STORE</title>
+            <link rel="icon" type="image/png" href="{% static 'TCC/images/INCON-LOGO.png' %}" sizes="32x32">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+        h1 {
+            color: #E30613;
+        }
+        p {
+            font-size: 1.1em;
+            margin: 20px 0;
+        }
+        button {
+            background-color: #E30613;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #761e24;
+        }
+        a {
+            color: #818585;
+            text-decoration: none;
+            font-size: 1em;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .actions {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Excluir Funcionário</h1>
+        <p>Tem certeza de que deseja excluir {{ funcionario.firstname }} {{ funcionario.lastname }}?</p>
+        <form method="post">
+            {% csrf_token %}
+            <div class="actions">
+                <button type="submit">Sim, excluir</button>
+                <a href="{% url 'USER' %}">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

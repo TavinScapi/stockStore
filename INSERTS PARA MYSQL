@@ -1,0 +1,77 @@
+create database stock_store;
+use stock_store;
+
+INSERT INTO tcc_fornecedor (nome, endereco, telefone, email, servicos, foto, foto_url)
+VALUES
+    ('Toyota', 'Avenida dos Autonomistas, 5000 - Osasco, SP', '+55 (11) 4002-8922', 'contato@toyota.com.br', 'Fabricante de automóveis, vendas e serviços de pós-venda', NULL, 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Toyota_Logo.svg/1280px-Toyota_Logo.svg.png'),
+    ('Leroy Merlin', 'Rua do Curió, 1234 - São Paulo, SP', '+55 (11) 5590-9500', 'contato@leroymerlin.com.br', 'Materiais de construção e decoração', NULL, 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Leroy_Merlin_logo_2022.svg/1280px-Leroy_Merlin_logo_2022.svg.png'),
+    ('Positivo Tecnologia', 'Rua Souza Lima, 123 - São Paulo, SP', '+55 (11) 4000-1234', 'contato@positivotecnologia.com.br', 'Produtos de tecnologia, computadores e tablets', NULL, 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Positivo_Tecnologia_logo_2022.svg/800px-Positivo_Tecnologia_logo_2022.svg.png'),
+    ('Duratex', 'Rua Felipe Camarão, 234 - São Paulo, SP', '+55 (11) 2138-6500', 'contato@duratex.com.br', 'Produtos de madeira e acabamentos para construção', NULL, 'https://upload.wikimedia.org/wikipedia/commons/6/6a/Duratex_logo.svg'),
+    ('Embraer', 'Av. Brigadeiro Faria Lima, 2170 - São José dos Campos, SP', '+55 (12) 3927-1000', 'contato@embraer.com.br', 'Aeronaves, manutenção e serviços aeroespaciais', NULL, 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Embraer_logo.svg/800px-Embraer_logo.svg.png');
+
+INSERT INTO tcc_funcionario (firstname, lastname, email, phone, username, password, photo, last_login)
+VALUES
+('João', 'Silva', 'joao.silva@email.com', '(11) 98765-4321', 'joao123', 'senha_secreta', 'photos/joao.jpg', NOW()),
+('Maria', 'Oliveira', 'maria.oliveira@email.com', '(11) 99876-5432', 'maria123', 'outrasenha', NULL, NOW()),
+('Carlos', 'Souza', 'carlos.souza@email.com', '(11) 91234-5678', 'carlos123', 'senha123', 'photos/carlos.jpg', NOW()),
+('Ana', 'Costa', 'ana.costa@email.com', '(11) 92222-3333', 'ana123', '123senha', 'photos/ana.jpg', NOW()),
+('Rafael', 'Pereira', 'rafael.pereira@email.com', '(11) 95555-6666', 'rafael123', 'rafaelpass', NULL, NOW()),
+('Juliana', 'Mendes', 'juliana.mendes@email.com', '(11) 94444-7777', 'juliana123', 'senha1234', 'photos/juliana.jpg', NOW()),
+('Felipe', 'Lima', 'felipe.lima@email.com', '(11) 97777-8888', 'felipe123', 'lima123', NULL, NOW()),
+('Patricia', 'Alves', 'patricia.alves@email.com', '(11) 92345-6789', 'patricia123', 'patricia@senha', 'photos/patricia.jpg', NOW()),
+('Ricardo', 'Fernandes', 'ricardo.fernandes@email.com', '(11) 93456-7890', 'ricardo123', 'ricardosecreto', NULL, NOW()),
+('Camila', 'Martins', 'camila.martins@email.com', '(11) 91123-4567', 'camila123', 'senha987', 'photos/camila.jpg', NOW());
+
+
+INSERT INTO tcc_produto (nome, descricao, preco, quantidade, categoria, estoque_minimo, estoque_maximo, fornecedor_id)
+VALUES
+('Cadeira Ergonômica', 'Cadeira de escritório ergonômica, ajustável e confortável para longas horas de trabalho.', 299.99, 50, 'escritorio', 10, 200, 1),
+('Papel A4', 'Papel sulfite A4, ideal para impressoras e fotocopiadoras.', 15.00, 200, 'escritorio', 10, 500, 2),
+('Caneta Esferográfica', 'Caneta esferográfica de qualidade para escrever com conforto.', 2.50, 500, 'escritorio', 10, 1000, 3),
+('Tesoura de Escritório', 'Tesoura de alta durabilidade, ideal para uso em escritório.', 10.00, 150, 'escritorio', 5, 300, 4),
+('Agenda 2024', 'Agenda para anotações diárias, com planejamento anual.', 20.00, 100, 'escritorio', 10, 200, 5),
+('Cartucho de Tinta', 'Cartucho de tinta para impressora jato de tinta.', 50.00, 200, 'escritorio', 5, 500, 6),
+('Smartphone Galaxy S22', 'Smartphone Samsung Galaxy S22 com 128GB de armazenamento.', 4999.00, 30, 'eletronicos', 5, 50, 3),
+('Laptop Dell Inspiron', 'Laptop Dell Inspiron 15 com processador Intel Core i7 e 16GB de RAM.', 4500.00, 40, 'eletronicos', 5, 60, 2),
+('Monitor LED 24"', 'Monitor LED de 24 polegadas com resolução Full HD.', 900.00, 100, 'eletronicos', 20, 200, 3),
+('Mouse Sem Fio', 'Mouse sem fio com design ergonômico e fácil de usar.', 40.00, 150, 'eletronicos', 10, 300, 2),
+('Teclado Mecânico', 'Teclado mecânico com switches de alta performance e iluminação RGB.', 250.00, 80, 'eletronicos', 10, 150, 3),
+('Fone de Ouvido Bluetooth', 'Fone de ouvido Bluetooth, ideal para uso no dia a dia.', 120.00, 200, 'eletronicos', 10, 500, 3),
+('Câmera de Segurança', 'Câmera de segurança com resolução 1080p e visão noturna.', 300.00, 60, 'eletronicos', 10, 150, 4),
+('Cimento Portland', 'Cimento Portland para construção de obras e reformas.', 25.50, 800, 'materiais', 50, 2000, 2),
+('Tijolo de Cimento', 'Tijolo de cimento de alta resistência, ideal para construção civil.', 1.20, 1000, 'materiais', 50, 5000, 2),
+('Areia Grossa', 'Areia grossa para construção civil e reformas.', 100.00, 500, 'materiais', 50, 1500, 3),
+('Brita 1', 'Brita 1 para construção e pavimentação.', 90.00, 600, 'materiais', 50, 2000, 2),
+('Bloco Cerâmico', 'Bloco cerâmico para alvenaria e construção de paredes.', 2.80, 700, 'materiais', 50, 3000, 4),
+('Furadeira Bosch', 'Furadeira elétrica Bosch, modelo de uso profissional para construção e reparos.', 350.00, 100, 'materiais', 20, 300, 3),
+('Parafuso 3/4', 'Parafuso de 3/4, ideal para construção e uso geral.', 0.50, 5000, 'materiais', 100, 10000, 4),
+('Tinta Acrílica', 'Tinta acrílica para pintura de paredes e superfícies internas.', 45.00, 300, 'materiais', 20, 1000, 3),
+('Piso Cerâmico', 'Piso cerâmico de alta qualidade, resistente e fácil de limpar.', 30.00, 400, 'materiais', 50, 1500, 2),
+('Chave Inglesa', 'Chave inglesa ajustável para manutenção de diversos equipamentos e máquinas.', 45.00, 150, 'materiais', 20, 500, 4),
+('Martelo', 'Martelo de carpinteiro, modelo tradicional e durável.', 25.00, 250, 'materiais', 30, 600, 2),
+('Serra Circular', 'Serra circular Bosch para cortes de madeira e outros materiais.', 350.00, 80, 'materiais', 20, 150, 3),
+('Lixa para Madeira', 'Lixa para madeira de grão fino, ideal para acabamentos.', 15.00, 400, 'materiais', 50, 800, 4),
+('Cabo de Aço', 'Cabo de aço de alta resistência, ideal para amarrações e cargas pesadas.', 120.00, 150, 'materiais', 10, 300, 3),
+('Durepoxi', 'Durepoxi para reparos rápidos em diversos materiais.', 20.00, 300, 'materiais', 30, 700, 2),
+('Broca de Vidro', 'Broca de alta precisão para perfuração de vidro e cerâmica.', 15.00, 200, 'materiais', 20, 500, 4),
+('Fita Crepe', 'Fita crepe para uso geral, ideal para pintura e outras aplicações.', 5.00, 600, 'materiais', 100, 1500, 3),
+('Placa de Gesso', 'Placa de gesso acartonado, ideal para construção de paredes internas.', 20.00, 500, 'materiais', 50, 1500, 2),
+('Disjuntor 10A', 'Disjuntor de 10 amperes para proteção de circuitos elétricos.', 18.00, 400, 'materiais', 50, 1000, 4),
+('Ferro de Passar', 'Ferro de passar roupas com tecnologia de vapor.', 120.00, 100, 'eletronicos', 10, 250, 5),
+('Liquidificador', 'Liquidificador de alta potência para uso doméstico.', 150.00, 120, 'eletronicos', 10, 250, 3),
+('Micro-ondas', 'Micro-ondas de 20L, modelo compacto e funcional.', 200.00, 80, 'eletronicos', 10, 200, 3),
+('Aspirador de Pó', 'Aspirador de pó com potência de 1400W, ideal para limpeza pesada.', 350.00, 50, 'eletronicos', 20, 150, 2),
+('Cortador de Grama', 'Cortador de grama elétrico, com design ergonômico e fácil de manusear.', 500.00, 30, 'eletronicos', 10, 100, 4),
+('Secador de Cabelo', 'Secador de cabelo profissional com controle de temperatura.', 120.00, 200, 'eletronicos', 20, 500, 5),
+('Batedeira', 'Batedeira de 3 velocidades, ideal para uso doméstico e industrial.', 180.00, 150, 'eletronicos', 20, 400, 2),
+('Cama Box Casal', 'Cama box casal com colchão de alta qualidade.', 1500.00, 70, 'materiais', 20, 150, 2),
+('Sofá Retrátil', 'Sofá retrátil e reclinável, com estofado confortável.', 1200.00, 30, 'materiais', 10, 50, 1),
+('Cômoda de Madeira', 'Cômoda de madeira com 6 gavetas, ideal para armazenamento.', 500.00, 40, 'materiais', 20, 100, 3),
+('Mesa de Jantar', 'Mesa de jantar com 6 cadeiras, ideal para a sala de jantar.', 1000.00, 50, 'materiais', 20, 150, 4),
+('Estante de Livros', 'Estante de livros de madeira, com 4 prateleiras.', 300.00, 60, 'materiais', 30, 200, 2),
+('Cômoda de Madeira', 'Cômoda de madeira com 6 gavetas, ideal para armazenamento.', 500.00, 40, 'materiais', 20, 100, 4),
+('Mesa de Jantar', 'Mesa de jantar com 6 cadeiras, ideal para a sala de jantar.', 1000.00, 50, 'materiais', 20, 150, 5),
+('Estante de Livros', 'Estante de livros de madeira, com 4 prateleiras.', 300.00, 60, 'materiais', 30, 200, 2),
+('Cama Box Casal', 'Cama box casal com colchão de alta qualidade.', 1500.00, 70, 'materiais', 20, 150, 2);
+
+

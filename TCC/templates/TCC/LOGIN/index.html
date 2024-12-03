@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STOCK.STORE</title>
+        <link rel="icon" type="image/png" href="{% static 'TCC/images/INCON-LOGO.png' %}" sizes="32x32">
+
+    <link rel="stylesheet" href="{% static 'TCC/LOGIN/index.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-image">
+            <img src="{% static 'TCC/images/Admin-bro.png' %}" alt="Imagem de Cadastro">
+        </div>
+        <div class="form-content">
+            <h1>Faça seu login de ADM</h1>
+            <p>Digite os seus dados de acesso no campo abaixo.</p>
+            <br>
+            <form id="registrationForm" onsubmit="handleAdminLogin(event)" novalidate>
+                <div class="input-group">
+                    <div class="input-box">
+                        <label for="username">Usuário</label>
+                        <input type="text" id="username" placeholder="Digite seu Usuário" autofocus="true" required aria-describedby="username-error"/>
+                        <span id="username-error" class="error" aria-live="polite"></span>
+                    </div>
+                    <br>
+                    <div class="input-box">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" placeholder="Digite sua Senha" required aria-describedby="password-error"/>
+                        <span id="password-error" class="error" aria-live="polite"></span>
+                    </div>
+                </div>
+                <div id="loading-message" class="loading" style="display: none;" aria-live="polite">Verificando...</div> <!-- Indicador de carregamento -->
+                <div class="continue-button">
+                    <button type="submit" aria-label="Entrar">Entrar</button>
+                    <button class="oi" type="button" onclick="goBack()" aria-label="Voltar">Voltar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const adminCredentials = {
+            username: 'Senai@801',
+            password: '801'
+        };
+
+        function handleAdminLogin(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const loadingMessage = document.getElementById('loading-message');
+
+            // Limpar mensagens de erro
+            document.getElementById('username-error').textContent = '';
+            document.getElementById('password-error').textContent = '';
+
+            // Mostrar o indicador de carregamento
+            loadingMessage.style.display = 'block';
+
+            // Simula um atraso para a verificação de login
+            setTimeout(() => {
+                loadingMessage.style.display = 'none';
+
+                // Verificação do login do admin
+                if (username === adminCredentials.username && password === adminCredentials.password) {
+                    localStorage.setItem('userRole', 'admin');
+                    window.location.href = '{% url "home" %}'; // Redirecionar para a página inicial
+                } else {
+                    // Mostrar mensagens de erro específicas
+                    if (!username) {
+                        document.getElementById('username-error').textContent = 'Por favor, insira o usuário.';
+                    } else if (!password) {
+                        document.getElementById('password-error').textContent = 'Por favor, insira a senha.';
+                    } else {
+                        document.getElementById('username-error').textContent = 'Usuário ou senha incorretos!';
+                        document.getElementById('password-error').textContent = 'Usuário ou senha incorretos!';
+                    }
+                }
+            }, 1000); // Simulando uma verificação de 1 segundo
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+
+</html>
