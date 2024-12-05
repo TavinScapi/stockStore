@@ -7,22 +7,28 @@
     <meta name="description" content="Gerencie seu almoxarifado de forma eficiente com o nosso sistema de estoque. Controle de inventário, produtos e relatórios.">
     <meta name="keywords" content="estoque, almoxarifado, controle, inventário, gestão de estoque, produtos">
     {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'TCC/FORN/FORNCAD/index.css' %}">
     <link rel="icon" type="image/png" href="{% static 'TCC/images/INCON-LOGO.png' %}" sizes="32x32">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="icon" type="image/png" href="{% static 'TCC/images/INCON-LOGO.png' %}" sizes="32x32">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Cadastrar Fornecedor</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Cadastrar</button>
-        <button onclick="window.history.back()">Voltar</button>
-    </form>
+    <div class="form-wrapper">
+        <div class="form-container">
+            <h1 class="form-title">Cadastrar Fornecedor</h1>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.as_p }}
+                </div>
+                <div class="form-buttons">
+                    <button type="submit" class="btn-submit">Cadastrar</button>
+                    <button type="button" onclick="window.history.back()" class="btn-back">Voltar</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
-
-
